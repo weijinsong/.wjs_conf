@@ -30,6 +30,7 @@ n_keymap('<leader>sv', ':source $MYVIMRC <CR>')
 n_keymap('<leader>ev', ':tabe $MYVIMRC <CR>')
 n_keymap('<leader>ey', ':tabe ~/.config/yazi/yazi.toml <CR>')
 n_keymap('<leader>ez', ':tabe ~/.zshrc <CR>')
+n_keymap('<leader>et', ':tabe ~/.tmux.conf <CR>')
 
 n_keymap('<left>', ':vertical resize -2<CR>')
 n_keymap('<right>', ':vertical resize +2<CR>')
@@ -47,6 +48,18 @@ vim.api.nvim_create_user_command('Hterm', 'set splitright | vsplit| term', {})
 
 n_keymap('<F3>', ':-tabnext<CR>')
 n_keymap('<F4>', ':+tabnext<CR>')
+
+---
+--- neovide
+---
+if vim.g.neovide then
+vim.g.neovide_cursor_animation_length = 0
+vim.g.neovide_cursor_trail_size = 0
+vim.g.neovide_cursor_animate_command_line = false
+vim.g.neovide_scroll_animation_length = 0
+vim.o.background = "dark"
+vim.g.neovide_opacity = 0.85
+end
 
 --
 -- lazy
@@ -84,7 +97,6 @@ require('lazy').setup({
     { 'BurntSushi/ripgrep', },
     { 'nvim-telescope/telescope.nvim', },
     { 'yorickpeterse/nvim-window', },
-    { 'kiyoon/jupynium.nvim', build = "pip install .", },
     { 'rcarriga/nvim-notify', },
     { 'stevearc/dressing.nvim', },
     { 
@@ -93,6 +105,7 @@ require('lazy').setup({
         opts = {},
     },
     require('plugins.llm'),
+    require('plugins.molten-nvim'),
 })
 
 if vim.fn.has('termguicolors') then 
@@ -114,6 +127,12 @@ start_screen.setup( {
         week_header = { enable = false, },
         shortcut = {},
     },
+})
+
+require('nvim-treesitter').install({
+    'rust', 'python', 'perl', 'lua',
+    'json', 'yaml', 'toml',
+    'bash', 'zsh',
 })
 
 local ibl = require('ibl')
@@ -240,11 +259,10 @@ local function my_on_attach(bufnr)
     vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
     vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close'))
     vim.keymap.set('n', 's', api.node.open.vertical, opts('vertical Split'))
-    vim.keymap.set('n', 'S', api.node.open.horizontal, opts('horizontal Split'))
+    vim.keymap.set('n', 'i', api.node.open.horizontal, opts('horizontal Split'))
     vim.keymap.set('n', 't', api.node.open.tab, opts('Tabe'))
     vim.keymap.set('n', 'R', api.tree.reload, opts('reload'))
 end
-
 
 require('nvim-tree').setup({
     renderer = {
@@ -261,12 +279,11 @@ require('nvim-tree').setup({
 })
 vim.api.nvim_set_keymap('n', '<F2>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
-
 require('nvim-surround').setup({
 })
 
-
 require('virt-column').setup({
+
 })
 
 vim.api.nvim_set_keymap('v', 'tbb', ':Tabluarize /', {})
@@ -313,3 +330,17 @@ require('nvim-window').setup({
 
 n_keymap('<leader>w', ':lua require(\'nvim-window\').pick() <CR>')
 
+--
+-- render-markdown
+--
+require('render-markdown').setup({
+    latex = {
+        enabled = true,
+        render_modes = false,
+        converter = { 'utftex', 'latex2text' },
+        highlight = 'RenderMarkdownMath',
+        position = 'center',
+        top_pad = 0,
+        bottom_pad = 0,
+    },
+})
