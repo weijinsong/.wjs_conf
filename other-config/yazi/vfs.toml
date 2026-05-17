@@ -1,0 +1,6 @@
+[services.my-server]
+type = "sftp"
+host = "10.24.131.109"
+user = "weijinsong.187"
+port = 22
+password = "1t0GHB0Sa#"
