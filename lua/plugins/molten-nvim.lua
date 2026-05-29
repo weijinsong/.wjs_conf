@@ -1,3 +1,6 @@
+if vim.g.vscode then
+return 
+else 
 return {
     {
         "benlubas/molten-nvim",
@@ -98,4 +101,5 @@ return {
         end,
     },
 }
+end
 
