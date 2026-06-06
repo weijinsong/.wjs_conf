@@ -60,6 +60,8 @@ keymap = [
 	# Operation
 	{ on = "o",         run = "open",                        desc = "Open selected files" },
 	{ on = "O",         run = "open --interactive",          desc = "Open selected files interactively" },
+    # { on = "o",         run = "plugin open-with-cmd --block",desc = "Open with command in the terminal" },
+    # { on = "O",         run = "plugin open-with-cmd",        desc = "Open with command" },
 	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
 	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "y",         run = "yank",                        desc = "Yank selected files (copy)" },
@@ -372,3 +374,13 @@ keymap = [
 	# Filtering
 	{ on = "f", run = "filter", desc = "Filter help items" },
 ]
+
+# [[manager.prepend_keymap]]
+# on   = "o"
+# run  = "plugin open-with-cmd -- block"
+# desc = "Open with command in the terminal"
+#
+# [[manager.prepend_keymap]]
+# on   = "O"
+# run  = "plugin open-with-cmd"
+# desc = "Open with command"
