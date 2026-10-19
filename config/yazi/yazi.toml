@@ -107,6 +107,16 @@ prepend_previewers = [
 #    { url = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
 ]
 
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"
+
 #fetchers = [
 #	# MIME-type
 #	{ url = "*/",         run = "mime.dir",    prio = "high", group = "mime" },

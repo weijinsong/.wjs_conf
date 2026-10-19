@@ -1,2 +1,10 @@
 [flavor]
 dark = "catppuccin-mocha"
+
+[git]
+unstaged = { fg = "blue" }
+deleted  = { fg = "red", bold = true }
+unknown_sign  = " "
+unstaged_sign = "M"
+deleted_sign  = "D"
+clean_sign    = "✔"

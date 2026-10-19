@@ -1,7 +1,5 @@
-[services.my-server]
-type = "sftp"
-host = "10.24.131.109"
+[sftp.my-server]
+host = "10.24.130.218"
 user = "weijinsong.187"
 port = 22
-#password = "1t0GHB0Sa#"
-password = "Zj@20260420"
+password = "Zj@20260714"
