@@ -32,6 +32,13 @@ return {
                         },
                     },
                 },
+                git = {
+                    ignore = false,
+                    timeout = 5000,
+                },
+                filters = {
+                    dotfiles = false,
+                },
                 on_attach = my_on_attach,
             })
             vim.api.nvim_set_keymap('n', '<F2>', ':NvimTreeToggle<CR>', {noremap = true, silent = true})

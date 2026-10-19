@@ -17,6 +17,12 @@ return {
                     top_pad = 0,
                     bottom_pad = 0,
                 },
+                win_options = {
+                    conceallevel = {
+                        default = 0,
+                        rendered = 0,
+                    },
+                },
             })
         end
     },
